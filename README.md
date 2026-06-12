@@ -1,103 +1,145 @@
-# 🚆 RailSense AI — Integrated System
-**FAR AWAY International Hackathon 2026**
+<<<<<<< HEAD
+# RailSense-AI
+RailSense AI: Smart railway safety platform with AI agents, real-time monitoring, anomaly detection, and automated incident response.
+=======
+🚆 RailSense AI – Intelligent Railway Monitoring & Incident Response System
+📌 Overview
 
----
+RailSense AI is an AI-powered railway monitoring and incident response platform designed to improve railway safety through autonomous monitoring, anomaly detection, and real-time decision support.
 
-## ⚡ Quick Start (2 terminals)
+The system continuously analyzes railway operational data such as temperature, vibration, signal status, train speed, and crowd density to identify potential failures before they escalate into major incidents.
 
-### Terminal 1 — Backend
-```bash
-cd backend
-pip install -r requirements.txt
-# Open .env and paste your Anthropic API key
-python main.py
-```
-Server starts at → **http://localhost:8000**
+Using a multi-agent AI architecture, RailSense AI can:
 
-### Terminal 2 — Frontend
-```bash
-# Just open the HTML file — no build step needed
-# Option A: VS Code Live Server (install extension, right-click index.html → Open with Live Server)
-# Option B: Python simple server
-cd frontend
-python -m http.server 3000
-# Open http://localhost:3000
-```
+Monitor railway sensor data
+Detect abnormal conditions
+Assess risk levels
+Generate automated response recommendations
+Visualize incidents through an interactive dashboard
+Simulate real-world railway fault scenarios
 
----
+🎯 Problem Statement
 
-## ✅ Verify Everything Works
+Railway systems generate massive amounts of operational data every second. Traditional monitoring systems often rely on manual observation and delayed responses, increasing the risk of accidents, operational disruptions, and maintenance delays.
 
-| Check | URL |
-|-------|-----|
-| Backend alive | http://localhost:8000/health |
-| API docs (show judges this) | http://localhost:8000/docs |
-| Trains flowing | http://localhost:8000/trains |
-| Anomalies | http://localhost:8000/anomalies |
-| Agent logs | http://localhost:8000/agents/log |
+RailSense AI addresses this challenge by providing:
 
----
+Early anomaly detection
+Automated risk assessment
+Real-time incident monitoring
+Faster decision support for railway authorities
 
-## 🎬 Demo Flow (exactly per PDF script)
+🚀 Key Features
+🤖 Multi-Agent AI Architecture
+Monitor Agent
+Continuously observes railway sensor readings
+Detects abnormal operational conditions
+Triggers investigation workflows
+Anomaly Detection Agent
+Analyzes sensor data
+Calculates risk levels
+Classifies incidents as Low, Medium, High, or Critical
+Supports Claude AI-powered analysis
+Response Agent
+Generates automated recommendations
+Suggests speed restrictions
+Recommends maintenance actions
+Supports emergency response workflows
+🚆 Railway Sensor Simulation
 
-1. Open dashboard → trains visible, system online badge green
-2. Select **Track Fault** button → click **Inject Fault**
-3. Watch: anomaly feed shows **CRITICAL** alert within 5 seconds
-4. Watch: AI Decision Timeline shows all 3 agents firing
-5. AI Response Panel shows: driver advisory + maintenance dispatch
-6. Stat shows response time in seconds vs "8-15 min human"
+Since real railway infrastructure is not accessible during development, RailSense AI includes a simulation engine capable of generating realistic railway telemetry:
 
----
+Temperature
+Vibration
+Signal Status
+Train Speed
+Crowd Density
+⚠️ Fault Injection Engine
 
-## 🗂 Folder Structure
+Supports simulation of multiple railway emergencies:
 
-```
-railsense-integrated/
-├── backend/
-│   ├── main.py                ← FastAPI server + sensor loop (YOUR FILE)
-│   ├── database.py            ← JSON storage (YOUR FILE)
-│   ├── requirements.txt
-│   ├── .env                   ← Add ANTHROPIC_API_KEY here
-│   ├── agents/
-│   │   ├── monitor_agent.py   ← Threshold checks
-│   │   ├── anomaly_agent.py   ← Claude AI classification
-│   │   └── response_agent.py  ← Auto-alerts
-│   └── simulator/
-│       └── sensor_simulator.py ← Fake IoT data for 3 trains
-├── frontend/
-│   ├── index.html             ← Dashboard (open in browser)
-│   ├── css/style.css
-│   └── js/
-│       ├── api.js             ← Backend connector (YOUR FILE)
-│       └── main.js            ← Dashboard visuals
-└── data/                      ← JSON files auto-created by backend
-```
+Track Failure
+Signal Failure
+Overspeed Conditions
+Crowd Surge Events
 
----
+This enables safe testing of AI workflows without real-world infrastructure.
 
-## 🔌 API Endpoints
+📊 Real-Time Monitoring Dashboard
 
-| Method | URL | Description |
-|--------|-----|-------------|
-| GET | `/health` | Server alive check |
-| GET | `/trains` | Live train positions |
-| GET | `/anomalies` | Alert history |
-| GET | `/agents/log` | Agent activity timeline |
-| GET | `/agents/stats` | AI War Room stats |
-| GET | `/network/health` | 6 health gauges |
-| POST | `/fault/inject` | 🔴 Demo fault injection |
-| POST | `/sensor/data` | Raw sensor input |
-| WS | `/ws` | Live WebSocket stream |
-| GET | `/docs` | Swagger UI |
+The dashboard provides:
 
----
+Railway network visualization
+Live train monitoring
+Incident tracking
+Alert management
+Agent status monitoring
+Operational analytics
+🔄 Real-Time Updates
 
-## 🔑 .env Setup
+RailSense AI uses WebSocket-based communication to push alerts instantly from the backend to the dashboard without requiring page refreshes.
 
-```env
-ANTHROPIC_API_KEY=sk-ant-your-key-here
-PORT=8000
-```
-Get free API key: **console.anthropic.com**
+🏗️ System Architecture
+Railway Sensors / Simulator
+            │
+            ▼
+     Monitor Agent
+            │
+            ▼
+  Anomaly Detection Agent
+            │
+            ▼
+     Response Agent
+            │
+            ▼
+       FastAPI Backend
+            │
+            ▼
+     WebSocket Broadcast
+            │
+            ▼
+     Interactive Dashboard
+🛠️ Technology Stack
+Frontend
+HTML
+CSS
+JavaScript
+Backend
+FastAPI
+Python
+AI & Automation
+Claude API (Anthropic)
+Multi-Agent Architecture
+Database & Storage
+Firebase (Optional)
+JSON-based Storage
+Real-Time Communication
+WebSockets
+Development Tools
+VS Code
+GitHub
+🧪 Demo Workflow
+Generate railway sensor data using the simulator.
+Inject a fault scenario.
+Monitor Agent detects abnormal behavior.
+Anomaly Agent evaluates risk.
+Response Agent generates recommendations.
+Backend stores incident data.
+Dashboard updates in real-time.
+🌟 Future Enhancements
+Predictive maintenance using machine learning
+Integration with IoT railway sensors
+Advanced route optimization
+Real-time CCTV analytics
+AI-powered passenger crowd management
+Mobile monitoring application
+Cloud deployment and scalability
+👥 Team
 
-Without API key — system uses rule-based logic (still works for demo).
+Developed as a collaborative hackathon project focused on leveraging AI, automation, and real-time analytics to improve railway safety and operational efficiency.
+
+📜 License
+
+This project is developed for educational, research, and hackathon purposes.
+
+>>>>>>> ca6f76d425fe2ff46e9be00fc2ed1d9f152f25c2
