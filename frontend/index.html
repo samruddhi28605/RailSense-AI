@@ -1,0 +1,789 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RailSense AI | India's Autonomous Railway Intelligence Platform</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@300;400;600;800;900&family=Orbitron:wght@400;700;900&family=Roboto+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- ===== PARTICLE CANVAS BACKGROUND ===== -->
+<canvas id="particleCanvas" class="particle-canvas"></canvas>
+
+<!-- ===== TOP COMMAND BAR ===== -->
+<header class="command-bar" id="commandBar">
+    <div class="cmd-left">
+        <div class="logo-block">
+            <div class="logo-icon"><i class="fas fa-train"></i></div>
+            <div class="logo-text">
+                <span class="logo-main">RailSense<span class="logo-ai">AI</span></span>
+                <span class="logo-tagline">Predict. Prevent. Protect.</span>
+            </div>
+        </div>
+        <div class="cmd-divider"></div>
+        <div class="live-clock" id="liveClock">00:00:00</div>
+        <div class="cmd-date" id="liveDate">--</div>
+    </div>
+    <div class="cmd-center">
+        <div class="cmd-title-block">
+            <div class="cmd-title-label">LIVE OPERATIONS</div>
+            <div class="cmd-title-main">COMMAND CENTER</div>
+            <div class="cmd-title-sub">India's First Autonomous Railway Intelligence Platform</div>
+        </div>
+    </div>
+    <div class="cmd-right">
+        <div class="status-group">
+            <div class="status-badge online"><span class="status-dot"></span>System Online</div>
+            <div class="status-badge healthy"><span class="status-dot"></span>Network Healthy</div>
+            <div class="status-badge active"><span class="status-dot"></span>AI Agents Active</div>
+        </div>
+        <div class="emergency-btn" id="emergencyBtn">
+            <i class="fas fa-exclamation-triangle"></i> EMERGENCY
+        </div>
+    </div>
+</header>
+
+<!-- ===== LIVE TICKER ===== -->
+<div class="ticker-bar">
+    <div class="ticker-label"><i class="fas fa-satellite-dish"></i> LIVE FEED</div>
+    <div class="ticker-content" id="tickerContent">
+        <span>🔴 Track anomaly detected near Pune Division &bull;</span>
+        <span>🟢 AI Response dispatched — ETA 4 mins &bull;</span>
+        <span>🟡 Signal maintenance scheduled — Delhi-NCR &bull;</span>
+        <span>🔵 Mumbai CST crowd density: Normal &bull;</span>
+        <span>🟠 Overspeed alert resolved — Bengaluru Sector &bull;</span>
+        <span>🔴 Sensor malfunction — Hyderabad Junction &bull;</span>
+        <span>🟢 AI Confidence Score: 99.7% &bull;</span>
+        <span>🔵 68,000 KM Network Monitored &bull;</span>
+        <span>🟢 23 Million+ Passengers Protected Today &bull;</span>
+    </div>
+</div>
+
+<!-- ===== HERO SECTION ===== -->
+<section class="hero-section" id="home">
+    <div class="hero-bg-grid"></div>
+    <div class="radar-sweep" id="radarSweep">
+        <div class="radar-ring r1"></div>
+        <div class="radar-ring r2"></div>
+        <div class="radar-ring r3"></div>
+        <div class="radar-sweep-line"></div>
+        <div class="radar-label">AI RADAR</div>
+    </div>
+    <div class="hero-content">
+        <div class="hero-badge-row">
+            <div class="hero-badge pulse-badge">
+                <i class="fas fa-satellite"></i> LIVE MONITORING ACTIVE
+            </div>
+            <div class="hero-badge secondary-badge">
+                <i class="fas fa-shield-alt"></i> THREAT LEVEL: LOW
+            </div>
+        </div>
+        <h1 class="hero-title">
+            <span class="ht-line1">RAIL<span class="ht-accent">SENSE</span></span>
+            <span class="ht-line2">COMMAND</span>
+            <span class="ht-line3">CENTER</span>
+        </h1>
+        <p class="hero-subtitle">India's First <span class="hs-accent">Autonomous Railway Intelligence</span> Platform</p>
+        <div class="hero-stats-grid">
+            <div class="hstat-card" data-wow="0">
+                <div class="hstat-icon"><i class="fas fa-users"></i></div>
+                <div class="hstat-value"><span class="counter" data-target="23000000" data-suffix="M+">0</span></div>
+                <div class="hstat-label">Passengers Protected Daily</div>
+                <div class="hstat-bar"></div>
+            </div>
+            <div class="hstat-card" data-wow="1">
+                <div class="hstat-icon"><i class="fas fa-route"></i></div>
+                <div class="hstat-value"><span class="counter" data-target="68000" data-suffix=" KM">0</span></div>
+                <div class="hstat-label">Railway Network Coverage</div>
+                <div class="hstat-bar"></div>
+            </div>
+            <div class="hstat-card" data-wow="2">
+                <div class="hstat-icon"><i class="fas fa-train"></i></div>
+                <div class="hstat-value"><span class="counter" data-target="100" data-suffix="+">0</span></div>
+                <div class="hstat-label">AI-Monitored Trains</div>
+                <div class="hstat-bar"></div>
+            </div>
+            <div class="hstat-card" data-wow="3">
+                <div class="hstat-icon"><i class="fas fa-bolt"></i></div>
+                <div class="hstat-value"><span class="hstat-prefix">&lt;</span><span class="counter" data-target="5" data-suffix="s">0</span></div>
+                <div class="hstat-label">Detection Time</div>
+                <div class="hstat-bar"></div>
+            </div>
+            <div class="hstat-card" data-wow="4">
+                <div class="hstat-icon"><i class="fas fa-brain"></i></div>
+                <div class="hstat-value"><span class="counter" data-target="99.7" data-suffix="%">0</span></div>
+                <div class="hstat-label">AI Accuracy</div>
+                <div class="hstat-bar"></div>
+            </div>
+        </div>
+    </div>
+    <div class="scroll-indicator">
+        <span>SCROLL TO COMMAND</span>
+        <i class="fas fa-chevron-down"></i>
+    </div>
+</section>
+
+<!-- ===== MAIN DASHBOARD ===== -->
+<main class="dashboard-main">
+
+    <!-- ===== ROW 1: DIGITAL TWIN MAP + AI AGENTS ===== -->
+    <section class="dash-section" id="mapSection">
+        <div class="section-header-row">
+            <h2 class="section-title"><i class="fas fa-globe-asia"></i> DIGITAL TWIN — INDIA RAIL NETWORK</h2>
+            <div class="section-meta">
+                <span class="live-badge"><i class="fas fa-circle"></i> LIVE</span>
+                <span class="meta-info">Last sync: <span id="lastSync">0.2s ago</span></span>
+            </div>
+        </div>
+        <div class="map-agents-row">
+            <!-- MAP -->
+            <div class="map-panel glass-card">
+                <div class="map-controls">
+                    <button class="map-btn active" data-view="twin">Digital Twin</button>
+                    <button class="map-btn" data-view="heat">Heat Map</button>
+                    <button class="map-btn" data-view="signal">Signal Grid</button>
+                </div>
+                <div class="india-map-container" id="indiaMap">
+                    <canvas id="mapCanvas"></canvas>
+                    <div class="map-overlay-info">
+                        <div class="map-stat"><span class="ms-val" id="mapTrains">128</span><span class="ms-lbl">Active Trains</span></div>
+                        <div class="map-stat"><span class="ms-val" id="mapAlerts">7</span><span class="ms-lbl">Active Alerts</span></div>
+                        <div class="map-stat"><span class="ms-val" id="mapHealth">97.3%</span><span class="ms-lbl">Network Health</span></div>
+                    </div>
+                    <!-- City Labels -->
+                    <div class="city-label" style="top:18%;left:42%;" id="city-delhi">
+                        <div class="city-dot critical" id="dot-delhi"></div>
+                        <span>Delhi</span>
+                    </div>
+                    <div class="city-label" style="top:56%;left:22%;" id="city-mumbai">
+                        <div class="city-dot safe" id="dot-mumbai"></div>
+                        <span>Mumbai</span>
+                    </div>
+                    <div class="city-label" style="top:62%;left:26%;" id="city-pune">
+                        <div class="city-dot warning" id="dot-pune"></div>
+                        <span>Pune</span>
+                    </div>
+                    <div class="city-label" style="top:46%;left:18%;" id="city-ahmedabad">
+                        <div class="city-dot safe" id="dot-ahmedabad"></div>
+                        <span>Ahmedabad</span>
+                    </div>
+                    <div class="city-label" style="top:42%;left:78%;" id="city-kolkata">
+                        <div class="city-dot safe" id="dot-kolkata"></div>
+                        <span>Kolkata</span>
+                    </div>
+                    <div class="city-label" style="top:64%;left:54%;" id="city-hyderabad">
+                        <div class="city-dot warning" id="dot-hyderabad"></div>
+                        <span>Hyderabad</span>
+                    </div>
+                    <div class="city-label" style="top:76%;left:44%;" id="city-bengaluru">
+                        <div class="city-dot safe" id="dot-bengaluru"></div>
+                        <span>Bengaluru</span>
+                    </div>
+                    <div class="city-label" style="top:76%;left:58%;" id="city-chennai">
+                        <div class="city-dot safe" id="dot-chennai"></div>
+                        <span>Chennai</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- AI AGENTS WAR ROOM -->
+            <div class="agents-panel">
+                <div class="agents-title"><i class="fas fa-robot"></i> AI AGENT WAR ROOM</div>
+
+                <!-- Monitor Agent -->
+                <div class="agent-card glass-card monitor-agent" id="agentMonitor">
+                    <div class="agent-header">
+                        <div class="agent-icon monitor"><i class="fas fa-eye"></i></div>
+                        <div class="agent-info">
+                            <div class="agent-name">Monitor Agent</div>
+                            <div class="agent-status active"><span class="status-dot"></span>ACTIVE</div>
+                        </div>
+                        <div class="agent-confidence">
+                            <div class="conf-val" id="monitorConf">98.2%</div>
+                            <div class="conf-lbl">Confidence</div>
+                        </div>
+                    </div>
+                    <div class="agent-heartbeat">
+                        <canvas id="heartbeatCanvas" height="40"></canvas>
+                    </div>
+                    <div class="agent-stats">
+                        <div class="as-item"><span class="as-val" id="sensorCount">126</span><span class="as-lbl">Sensors</span></div>
+                        <div class="as-item"><span class="as-val" id="eventsProcessed">4,563</span><span class="as-lbl">Events/hr</span></div>
+                        <div class="as-item"><span class="as-val" id="uptime">99.9%</span><span class="as-lbl">Uptime</span></div>
+                    </div>
+                </div>
+
+                <!-- Anomaly Detection Agent -->
+                <div class="agent-card glass-card anomaly-agent" id="agentAnomaly">
+                    <div class="agent-header">
+                        <div class="agent-icon anomaly"><i class="fas fa-search-location"></i></div>
+                        <div class="agent-info">
+                            <div class="agent-name">Anomaly Detection</div>
+                            <div class="agent-status analyzing"><span class="status-dot"></span>ANALYZING</div>
+                        </div>
+                        <div class="agent-confidence">
+                            <div class="conf-val" id="anomalyConf">94.7%</div>
+                            <div class="conf-lbl">Confidence</div>
+                        </div>
+                    </div>
+                    <div class="severity-bars">
+                        <div class="sev-item"><span class="sev-lbl">CRITICAL</span><div class="sev-bar"><div class="sev-fill critical" id="sevCritical" style="width:15%"></div></div><span class="sev-count" id="critCount">2</span></div>
+                        <div class="sev-item"><span class="sev-lbl">HIGH</span><div class="sev-bar"><div class="sev-fill high" id="sevHigh" style="width:28%"></div></div><span class="sev-count" id="highCount">4</span></div>
+                        <div class="sev-item"><span class="sev-lbl">MEDIUM</span><div class="sev-bar"><div class="sev-fill medium" id="sevMedium" style="width:45%"></div></div><span class="sev-count" id="medCount">6</span></div>
+                        <div class="sev-item"><span class="sev-lbl">LOW</span><div class="sev-bar"><div class="sev-fill low" id="sevLow" style="width:12%"></div></div><span class="sev-count" id="lowCount">3</span></div>
+                    </div>
+                    <div class="threat-analysis">
+                        <div class="ta-label">Threat Analysis Running</div>
+                        <div class="ta-bar"><div class="ta-fill" id="taFill"></div></div>
+                    </div>
+                </div>
+
+                <!-- Response Agent -->
+                <div class="agent-card glass-card response-agent" id="agentResponse">
+                    <div class="agent-header">
+                        <div class="agent-icon response"><i class="fas fa-shield-alt"></i></div>
+                        <div class="agent-info">
+                            <div class="agent-name">Response Agent</div>
+                            <div class="agent-status standby"><span class="status-dot"></span>STANDBY</div>
+                        </div>
+                        <div class="agent-confidence">
+                            <div class="conf-val" id="responseConf">96.1%</div>
+                            <div class="conf-lbl">Readiness</div>
+                        </div>
+                    </div>
+                    <div class="response-stats">
+                        <div class="rs-item">
+                            <div class="rs-icon maint"><i class="fas fa-tools"></i></div>
+                            <div class="rs-info"><span class="rs-val" id="maintDispatches">3</span><span class="rs-lbl">Maintenance Dispatches</span></div>
+                        </div>
+                        <div class="rs-item">
+                            <div class="rs-icon advisory"><i class="fas fa-broadcast-tower"></i></div>
+                            <div class="rs-info"><span class="rs-val" id="driverAdvisories">12</span><span class="rs-lbl">Driver Advisories</span></div>
+                        </div>
+                        <div class="rs-item">
+                            <div class="rs-icon emergency"><i class="fas fa-ambulance"></i></div>
+                            <div class="rs-info"><span class="rs-val" id="emergActions">1</span><span class="rs-lbl">Emergency Actions</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== ROW 2: ANOMALY FEED + FAULT INJECTION ===== -->
+    <section class="dash-section">
+        <div class="anomaly-fault-row">
+
+            <!-- LIVE ANOMALY FEED -->
+            <div class="anomaly-panel glass-card">
+                <div class="panel-header">
+                    <h3 class="panel-title"><i class="fas fa-exclamation-triangle"></i> LIVE ANOMALY FEED</h3>
+                    <div class="panel-meta">
+                        <span class="live-badge pulse"><i class="fas fa-circle"></i> REAL-TIME</span>
+                        <span class="alert-total" id="alertTotal">15 Active</span>
+                    </div>
+                </div>
+                <div class="anomaly-feed" id="anomalyFeed">
+                    <!-- Alerts injected by JS -->
+                </div>
+            </div>
+
+            <!-- FAULT INJECTION CENTER -->
+            <div class="fault-panel glass-card">
+                <div class="panel-header">
+                    <h3 class="panel-title"><i class="fas fa-flask"></i> FAULT INJECTION CENTER</h3>
+                    <div class="panel-meta"><span class="demo-badge">DEMO MODE</span></div>
+                </div>
+                <div class="fault-subtitle">Simulate real-world railway failures to test AI response</div>
+                <div class="fault-buttons-grid">
+                    <button class="fault-btn critical" data-fault="track" onclick="injectFault('track')">
+                        <div class="fb-icon"><i class="fas fa-road"></i></div>
+                        <div class="fb-text">
+                            <span class="fb-title">Track Failure</span>
+                            <span class="fb-sub">Rail fracture simulation</span>
+                        </div>
+                        <div class="fb-indicator"></div>
+                    </button>
+                    <button class="fault-btn high" data-fault="signal" onclick="injectFault('signal')">
+                        <div class="fb-icon"><i class="fas fa-traffic-light"></i></div>
+                        <div class="fb-text">
+                            <span class="fb-title">Signal Failure</span>
+                            <span class="fb-sub">Signal dropout event</span>
+                        </div>
+                        <div class="fb-indicator"></div>
+                    </button>
+                    <button class="fault-btn high" data-fault="overspeed" onclick="injectFault('overspeed')">
+                        <div class="fb-icon"><i class="fas fa-tachometer-alt"></i></div>
+                        <div class="fb-text">
+                            <span class="fb-title">Overspeed Event</span>
+                            <span class="fb-sub">Speed limit exceeded</span>
+                        </div>
+                        <div class="fb-indicator"></div>
+                    </button>
+                    <button class="fault-btn medium" data-fault="crowd" onclick="injectFault('crowd')">
+                        <div class="fb-icon"><i class="fas fa-users"></i></div>
+                        <div class="fb-text">
+                            <span class="fb-title">Crowd Surge</span>
+                            <span class="fb-sub">Platform overcrowding</span>
+                        </div>
+                        <div class="fb-indicator"></div>
+                    </button>
+                    <button class="fault-btn medium" data-fault="comm" onclick="injectFault('comm')">
+                        <div class="fb-icon"><i class="fas fa-satellite-dish"></i></div>
+                        <div class="fb-text">
+                            <span class="fb-title">Communication Failure</span>
+                            <span class="fb-sub">Radio blackout zone</span>
+                        </div>
+                        <div class="fb-indicator"></div>
+                    </button>
+                    <button class="fault-btn low" data-fault="sensor" onclick="injectFault('sensor')">
+                        <div class="fb-icon"><i class="fas fa-microchip"></i></div>
+                        <div class="fb-text">
+                            <span class="fb-title">Sensor Malfunction</span>
+                            <span class="fb-sub">IoT sensor offline</span>
+                        </div>
+                        <div class="fb-indicator"></div>
+                    </button>
+                </div>
+                <div class="fault-status" id="faultStatus">
+                    <div class="fs-icon"><i class="fas fa-terminal"></i></div>
+                    <div class="fs-text" id="faultStatusText">System ready — select a fault to inject</div>
+                </div>
+                <!-- AI Response Panel (appears after fault injection) -->
+                <div class="ai-response-panel" id="aiResponsePanel" style="display:none">
+                    <div class="arp-title"><i class="fas fa-robot"></i> AI Response Actions</div>
+                    <div class="arp-actions" id="arpActions"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== ROW 3: PREDICTIVE AI + DECISION TIMELINE ===== -->
+    <section class="dash-section">
+        <div class="predictive-timeline-row">
+
+            <!-- PREDICTIVE AI PANEL -->
+            <div class="predictive-panel glass-card">
+                <div class="panel-header">
+                    <h3 class="panel-title"><i class="fas fa-brain"></i> PREDICTIVE AI PANEL</h3>
+                    <div class="panel-meta"><span class="ai-badge"><i class="fas fa-atom"></i> AI FORECAST</span></div>
+                </div>
+                <div class="predict-cards">
+                    <div class="predict-card risk">
+                        <div class="pc-header">
+                            <span class="pc-label">Track Failure Risk</span>
+                            <span class="pc-icon"><i class="fas fa-road"></i></span>
+                        </div>
+                        <div class="pc-gauge">
+                            <div class="gauge-arc" data-value="82" data-color="#ff4757">
+                                <canvas class="gauge-canvas" id="gauge0" width="100" height="60"></canvas>
+                            </div>
+                            <div class="pc-value high-risk" id="pred0">82%</div>
+                        </div>
+                        <div class="pc-label-sub">⚠ Potential Track Failure Risk: 82%</div>
+                    </div>
+                    <div class="predict-card stable">
+                        <div class="pc-header">
+                            <span class="pc-label">Signal Health</span>
+                            <span class="pc-icon"><i class="fas fa-traffic-light"></i></span>
+                        </div>
+                        <div class="pc-gauge">
+                            <div class="gauge-arc" data-value="91" data-color="#00ff87">
+                                <canvas class="gauge-canvas" id="gauge1" width="100" height="60"></canvas>
+                            </div>
+                            <div class="pc-value good" id="pred1">91%</div>
+                        </div>
+                        <div class="pc-label-sub">✅ Signal Health Forecast: Stable</div>
+                    </div>
+                    <div class="predict-card warning">
+                        <div class="pc-header">
+                            <span class="pc-label">Passenger Load</span>
+                            <span class="pc-icon"><i class="fas fa-users"></i></span>
+                        </div>
+                        <div class="pc-gauge">
+                            <div class="gauge-arc" data-value="76" data-color="#ffa502">
+                                <canvas class="gauge-canvas" id="gauge2" width="100" height="60"></canvas>
+                            </div>
+                            <div class="pc-value warn" id="pred2">76%</div>
+                        </div>
+                        <div class="pc-label-sub">⚠ Passenger Load Forecast: HIGH</div>
+                    </div>
+                    <div class="predict-card good">
+                        <div class="pc-header">
+                            <span class="pc-label">Weather Impact</span>
+                            <span class="pc-icon"><i class="fas fa-cloud-rain"></i></span>
+                        </div>
+                        <div class="pc-gauge">
+                            <div class="gauge-arc" data-value="23" data-color="#00d9ff">
+                                <canvas class="gauge-canvas" id="gauge3" width="100" height="60"></canvas>
+                            </div>
+                            <div class="pc-value info" id="pred3">23%</div>
+                        </div>
+                        <div class="pc-label-sub">✅ Weather Impact: Minimal</div>
+                    </div>
+                    <div class="predict-card risk">
+                        <div class="pc-header">
+                            <span class="pc-label">Failure Probability</span>
+                            <span class="pc-icon"><i class="fas fa-exclamation-circle"></i></span>
+                        </div>
+                        <div class="pc-gauge">
+                            <div class="gauge-arc" data-value="34" data-color="#ff6b81">
+                                <canvas class="gauge-canvas" id="gauge4" width="100" height="60"></canvas>
+                            </div>
+                            <div class="pc-value warn" id="pred4">34%</div>
+                        </div>
+                        <div class="pc-label-sub">🔍 Next 4h Failure Probability</div>
+                    </div>
+                    <div class="predict-card stable">
+                        <div class="pc-header">
+                            <span class="pc-label">Network Health</span>
+                            <span class="pc-icon"><i class="fas fa-network-wired"></i></span>
+                        </div>
+                        <div class="pc-gauge">
+                            <div class="gauge-arc" data-value="97" data-color="#00ff87">
+                                <canvas class="gauge-canvas" id="gauge5" width="100" height="60"></canvas>
+                            </div>
+                            <div class="pc-value good" id="pred5">97%</div>
+                        </div>
+                        <div class="pc-label-sub">✅ Network Health: Excellent</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- AI DECISION TIMELINE -->
+            <div class="timeline-panel glass-card">
+                <div class="panel-header">
+                    <h3 class="panel-title"><i class="fas fa-project-diagram"></i> AI DECISION TIMELINE</h3>
+                    <div class="panel-meta"><span class="time-badge" id="totalTime">4.3s Total</span></div>
+                </div>
+                <div class="timeline-container" id="decisionTimeline">
+                    <div class="tl-item completed" data-step="0">
+                        <div class="tl-left">
+                            <div class="tl-icon"><i class="fas fa-satellite-dish"></i></div>
+                            <div class="tl-line"></div>
+                        </div>
+                        <div class="tl-content">
+                            <div class="tl-title">Sensor Trigger</div>
+                            <div class="tl-desc">IoT sensor data received</div>
+                            <div class="tl-time">0.0s</div>
+                        </div>
+                    </div>
+                    <div class="tl-item completed" data-step="1">
+                        <div class="tl-left">
+                            <div class="tl-icon"><i class="fas fa-eye"></i></div>
+                            <div class="tl-line"></div>
+                        </div>
+                        <div class="tl-content">
+                            <div class="tl-title">Monitor Agent</div>
+                            <div class="tl-desc">Data streamed & classified</div>
+                            <div class="tl-time">+1.4s</div>
+                        </div>
+                    </div>
+                    <div class="tl-item completed" data-step="2">
+                        <div class="tl-left">
+                            <div class="tl-icon"><i class="fas fa-search-location"></i></div>
+                            <div class="tl-line"></div>
+                        </div>
+                        <div class="tl-content">
+                            <div class="tl-title">Anomaly Agent</div>
+                            <div class="tl-desc">Pattern deviation confirmed</div>
+                            <div class="tl-time">+0.8s</div>
+                        </div>
+                    </div>
+                    <div class="tl-item active" data-step="3">
+                        <div class="tl-left">
+                            <div class="tl-icon"><i class="fas fa-chart-bar"></i></div>
+                            <div class="tl-line"></div>
+                        </div>
+                        <div class="tl-content">
+                            <div class="tl-title">Risk Assessment</div>
+                            <div class="tl-desc">Severity scoring — AI analysis</div>
+                            <div class="tl-time">+0.6s</div>
+                        </div>
+                    </div>
+                    <div class="tl-item pending" data-step="4">
+                        <div class="tl-left">
+                            <div class="tl-icon"><i class="fas fa-shield-alt"></i></div>
+                            <div class="tl-line"></div>
+                        </div>
+                        <div class="tl-content">
+                            <div class="tl-title">Response Agent</div>
+                            <div class="tl-desc">Action plan formulated</div>
+                            <div class="tl-time">+2.1s</div>
+                        </div>
+                    </div>
+                    <div class="tl-item pending" data-step="5">
+                        <div class="tl-left">
+                            <div class="tl-icon"><i class="fas fa-hard-hat"></i></div>
+                            <div class="tl-line"></div>
+                        </div>
+                        <div class="tl-content">
+                            <div class="tl-title">Crew Dispatch</div>
+                            <div class="tl-desc">Maintenance team deployed</div>
+                            <div class="tl-time">+0.4s</div>
+                        </div>
+                    </div>
+                    <div class="tl-item pending" data-step="6">
+                        <div class="tl-left">
+                            <div class="tl-icon"><i class="fas fa-check-circle"></i></div>
+                        </div>
+                        <div class="tl-content">
+                            <div class="tl-title">Issue Resolved</div>
+                            <div class="tl-desc">System back to normal</div>
+                            <div class="tl-time">Est. +4m</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tl-total">
+                    <div class="tl-metric"><span class="tlm-val">1.4s</span><span class="tlm-lbl">Detection</span></div>
+                    <div class="tl-metric"><span class="tlm-val">0.8s</span><span class="tlm-lbl">Classification</span></div>
+                    <div class="tl-metric"><span class="tlm-val">2.1s</span><span class="tlm-lbl">Response</span></div>
+                    <div class="tl-metric highlight"><span class="tlm-val">4.3s</span><span class="tlm-lbl">Total</span></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== ROW 4: NETWORK HEALTH GAUGES ===== -->
+    <section class="dash-section" id="healthSection">
+        <div class="section-header-row">
+            <h2 class="section-title"><i class="fas fa-heartbeat"></i> NETWORK HEALTH CENTER</h2>
+            <div class="section-meta">
+                <span class="national-index">National Railway Safety Index: <span class="ni-val" id="safetyIndex">97.3</span></span>
+            </div>
+        </div>
+        <div class="health-gauges-row">
+            <div class="health-gauge-card glass-card" data-metric="track">
+                <canvas class="radial-gauge" id="rg0" width="140" height="140"></canvas>
+                <div class="rg-label">Track Health</div>
+                <div class="rg-value" id="rgv0">97.8%</div>
+            </div>
+            <div class="health-gauge-card glass-card" data-metric="signal">
+                <canvas class="radial-gauge" id="rg1" width="140" height="140"></canvas>
+                <div class="rg-label">Signal Health</div>
+                <div class="rg-value" id="rgv1">96.2%</div>
+            </div>
+            <div class="health-gauge-card glass-card" data-metric="safety">
+                <canvas class="radial-gauge" id="rg2" width="140" height="140"></canvas>
+                <div class="rg-label">Safety Score</div>
+                <div class="rg-value" id="rgv2">98.5%</div>
+            </div>
+            <div class="health-gauge-card glass-card" data-metric="ops">
+                <canvas class="radial-gauge" id="rg3" width="140" height="140"></canvas>
+                <div class="rg-label">Ops Efficiency</div>
+                <div class="rg-value" id="rgv3">95.1%</div>
+            </div>
+            <div class="health-gauge-card glass-card" data-metric="emergency">
+                <canvas class="radial-gauge" id="rg4" width="140" height="140"></canvas>
+                <div class="rg-label">Emergency Ready</div>
+                <div class="rg-value" id="rgv4">99.0%</div>
+            </div>
+            <div class="health-gauge-card glass-card" data-metric="ai">
+                <canvas class="radial-gauge" id="rg5" width="140" height="140"></canvas>
+                <div class="rg-label">AI Reliability</div>
+                <div class="rg-value" id="rgv5">99.7%</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== ROW 5: ANALYTICS COMMAND CENTER ===== -->
+    <section class="dash-section" id="analyticsSection">
+        <div class="section-header-row">
+            <h2 class="section-title"><i class="fas fa-chart-line"></i> ANALYTICS COMMAND CENTER</h2>
+            <div class="time-filter">
+                <button class="filter-btn active" data-period="1h">1H</button>
+                <button class="filter-btn" data-period="6h">6H</button>
+                <button class="filter-btn" data-period="24h">24H</button>
+                <button class="filter-btn" data-period="7d">7D</button>
+            </div>
+        </div>
+        <div class="analytics-grid">
+            <div class="chart-card glass-card span2">
+                <div class="chart-header">
+                    <h4 class="chart-title"><i class="fas fa-chart-area"></i> Anomalies Over Time</h4>
+                    <span class="live-badge"><i class="fas fa-circle"></i> LIVE</span>
+                </div>
+                <div style="height:240px;"><canvas id="anomalyTimeChart"></canvas></div>
+            </div>
+            <div class="chart-card glass-card">
+                <div class="chart-header">
+                    <h4 class="chart-title"><i class="fas fa-map-marker-alt"></i> Region-Wise Alerts</h4>
+                </div>
+                <div style="height:240px;"><canvas id="regionChart"></canvas></div>
+            </div>
+            <div class="chart-card glass-card">
+                <div class="chart-header">
+                    <h4 class="chart-title"><i class="fas fa-chart-pie"></i> Severity Distribution</h4>
+                </div>
+                <div style="height:240px;"><canvas id="severityChart"></canvas></div>
+            </div>
+            <div class="chart-card glass-card">
+                <div class="chart-header">
+                    <h4 class="chart-title"><i class="fas fa-tachometer-alt"></i> Network Performance</h4>
+                </div>
+                <div style="height:240px;"><canvas id="performanceChart"></canvas></div>
+            </div>
+            <div class="chart-card glass-card span2">
+                <div class="chart-header">
+                    <h4 class="chart-title"><i class="fas fa-users"></i> Passenger Density — Real Time</h4>
+                    <span class="live-badge"><i class="fas fa-circle"></i> LIVE</span>
+                </div>
+                <div style="height:240px;"><canvas id="passengerChart"></canvas></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== ROW 6: VOICE COMMAND + SAFETY INDEX ===== -->
+    <section class="dash-section">
+        <div class="voice-safety-row">
+
+            <!-- AI VOICE COMMAND -->
+            <div class="voice-panel glass-card">
+                <div class="panel-header">
+                    <h3 class="panel-title"><i class="fas fa-microphone"></i> AI VOICE COMMAND PANEL</h3>
+                    <span class="voice-status-badge" id="voiceStatus">● LISTENING</span>
+                </div>
+                <div class="voice-avatar">
+                    <div class="va-ring r1"></div>
+                    <div class="va-ring r2"></div>
+                    <div class="va-ring r3"></div>
+                    <div class="va-core"><i class="fas fa-brain"></i></div>
+                </div>
+                <div class="voice-label">RailSense AI Assistant</div>
+                <div class="waveform-container">
+                    <canvas id="waveformCanvas" height="60"></canvas>
+                </div>
+                <div class="voice-messages" id="voiceMessages">
+                    <div class="vm active"><span class="vm-time">00:01</span><span class="vm-text">"Track anomaly detected near Pune Division."</span></div>
+                    <div class="vm"><span class="vm-time">00:03</span><span class="vm-text">"Response team dispatched to sector 7-B."</span></div>
+                    <div class="vm"><span class="vm-time">00:05</span><span class="vm-text">"Speed advisory issued for Delhi-Agra corridor."</span></div>
+                    <div class="vm"><span class="vm-time">00:08</span><span class="vm-text">"Signal restored at Mumbai Central."</span></div>
+                </div>
+                <div class="voice-input-row">
+                    <input type="text" class="voice-input" placeholder="Type command or speak..." id="voiceInput">
+                    <button class="voice-btn" onclick="processVoiceCommand()"><i class="fas fa-paper-plane"></i></button>
+                    <button class="voice-mic-btn" id="micBtn"><i class="fas fa-microphone"></i></button>
+                </div>
+            </div>
+
+            <!-- AI CONFIDENCE + SAFETY METRICS -->
+            <div class="safety-metrics-panel">
+                <div class="sm-card glass-card">
+                    <div class="sm-header"><i class="fas fa-brain"></i> AI Confidence Meter</div>
+                    <div class="confidence-meter">
+                        <div class="cm-bar">
+                            <div class="cm-fill" id="confFill" style="width:99.7%"></div>
+                            <div class="cm-glow"></div>
+                        </div>
+                        <div class="cm-val" id="confVal">99.7%</div>
+                    </div>
+                    <div class="cm-labels"><span>0%</span><span>50%</span><span>100%</span></div>
+                </div>
+                <div class="sm-card glass-card">
+                    <div class="sm-header"><i class="fas fa-star"></i> Emergency Response Score</div>
+                    <div class="er-score" id="erScore">
+                        <div class="er-val">A+</div>
+                        <div class="er-sub">Response Grade</div>
+                    </div>
+                    <div class="er-stats">
+                        <div class="er-stat"><span class="ers-val">4.3s</span><span class="ers-lbl">Avg Response</span></div>
+                        <div class="er-stat"><span class="ers-val">100%</span><span class="ers-lbl">Resolution Rate</span></div>
+                    </div>
+                </div>
+                <div class="sm-card glass-card">
+                    <div class="sm-header"><i class="fas fa-tally"></i> Real-Time Decision Counter</div>
+                    <div class="decision-counter">
+                        <div class="dc-val" id="decisionCount">0</div>
+                        <div class="dc-lbl">Decisions Made Today</div>
+                    </div>
+                    <div class="dc-breakdown">
+                        <div class="dcb-item"><span class="dcb-dot critical"></span><span>Critical: <b id="dcCrit">48</b></span></div>
+                        <div class="dcb-item"><span class="dcb-dot high"></span><span>High: <b id="dcHigh">127</b></span></div>
+                        <div class="dcb-item"><span class="dcb-dot low"></span><span>Routine: <b id="dcRoutine">2,341</b></span></div>
+                    </div>
+                </div>
+                <div class="sm-card glass-card national-index-card">
+                    <div class="sm-header"><i class="fas fa-flag"></i> National Railway Safety Index</div>
+                    <div class="nsi-display">
+                        <div class="nsi-val" id="nsiVal">97.3</div>
+                        <div class="nsi-grade">EXCELLENT</div>
+                    </div>
+                    <div class="nsi-bar">
+                        <div class="nsi-fill" style="width:97.3%"></div>
+                    </div>
+                    <div class="nsi-compare">↑ 2.1 pts from last month</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</main>
+
+<!-- ===== FOOTER ===== -->
+<footer class="main-footer">
+    <div class="footer-inner">
+        <div class="footer-left">
+            <div class="footer-logo">RailSense<span>AI</span></div>
+            <div class="footer-tagline">Predict. Prevent. Protect.</div>
+        </div>
+        <div class="footer-center">
+            <div class="footer-stats">
+                <div class="fs-item"><span class="fs-val" id="ftTrains">128</span><span class="fs-lbl">Trains Online</span></div>
+                <div class="fs-item"><span class="fs-val" id="ftSensors">4,892</span><span class="fs-lbl">Sensors Active</span></div>
+                <div class="fs-item"><span class="fs-val" id="ftAlerts">15</span><span class="fs-lbl">Active Alerts</span></div>
+            </div>
+        </div>
+        <div class="footer-right">
+            <div class="footer-text">© 2035 RailSense AI — ISRO × Indian Railways × Ministry of Railways</div>
+            <div class="footer-build">Powered by Autonomous AI Agents v4.2 | <span class="fb-green">All Systems Operational</span></div>
+        </div>
+    </div>
+</footer>
+
+<!-- api.js MUST load before main.js — connects backend WebSocket + REST -->
+<script src="js/api.js"></script>
+<script src="js/main.js"></script>
+<script>
+/* ── PATCH: route fault buttons through the backend API ─────────────────
+   When a judge clicks a fault button:
+     1. injectFaultAPI() calls POST /fault/inject on the backend
+     2. Backend runs Monitor → Anomaly (Claude AI) → Response agents
+     3. Result broadcast via WebSocket → dashboard updates live
+     4. injectFault() (main.js) also runs for local visual effects
+   ──────────────────────────────────────────────────────────────────── */
+document.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('[data-fault]').forEach(btn => {
+    btn.addEventListener('click', async (e) => {
+      e.preventDefault();
+      const type = btn.getAttribute('data-fault');
+      // Show injecting state on button
+      const orig = btn.innerHTML;
+      btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Injecting...';
+      btn.disabled = true;
+
+      try {
+        // Call backend — full AI pipeline fires
+        await injectFaultAPI(type);
+      } finally {
+        // Restore button after 3s
+        setTimeout(() => {
+          btn.innerHTML = orig;
+          btn.disabled  = false;
+        }, 3000);
+      }
+    });
+  });
+
+  // Wire Emergency button to CRITICAL track fault
+  const emergBtn = document.getElementById('emergencyBtn');
+  if (emergBtn) {
+    emergBtn.addEventListener('click', () => injectFaultAPI('track'));
+  }
+});
+</script>
+</body>
+</html>
