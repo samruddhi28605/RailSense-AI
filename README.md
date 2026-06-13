@@ -50,7 +50,7 @@ A multi-agent AI architecture:
 ✅ Live dashboard
 ✅ GitHub-ready for deployment
 
-## 🎯 Vision
+##  Vision
 
 To transform railway safety from reactive systems to proactive, AI-driven autonomous intelligence — ensuring faster decisions, reduced risks, and saved lives.
 
